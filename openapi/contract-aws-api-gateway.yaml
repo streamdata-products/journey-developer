@@ -38,7 +38,7 @@ paths:
         - Journals
     post:
       summary: Add Journal
-      description: Add journal.
+      description: Add a new journal.
       operationId: "addJournal"
       consumes:
       - "application/json"
