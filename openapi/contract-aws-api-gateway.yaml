@@ -2484,3 +2484,15 @@ definitions:
     type: "array"
     items:
       $ref: "#/definitions/journal"
+tags:
+  - name: Journals
+  - name: Journal Areas
+  - name: Journal Area Stops
+  - name: Journal Area Stop Entries
+  - name: Journal Area Stop Entry Links
+  - name: Journal Area Stop Entry Services
+  - name: Journal Area Stop Entry Tools
+  - name: Journal Publish
+  - name: Links
+  - name: Services
+  - name: Tools                                                  
