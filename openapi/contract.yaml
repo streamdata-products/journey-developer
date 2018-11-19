@@ -1,0 +1,4188 @@
+swagger: '2.0'
+info:
+  title: "SDIO Discover"
+  description: "This is the OpenAPI definition for the OpenAPI portion of the SDIO Discover service."
+  termsOfService: "https://example.com/tos/"
+  contact:
+    name: API Evangelist
+    url: https://apievangelist.com
+    email: info@apievangelist.com
+  license:
+    name: Open Data Commons Public Domain
+    url: http://opendatacommons.org/licenses/pddl/
+  version: v1.2
+host: example.com
+basePath: /
+schemes:
+- http
+produces:
+- application/json
+paths:
+  /contracts:
+    get:
+      summary: OpenAPI Contracts
+      description: Provides access to all the OpenAPI contracts in the system.
+      operationId: getContracts
+      parameters:
+        - in: query
+          required: false
+          type: string
+          name: query
+          description: 'Query to serch for contracts by.'
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contracts"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts
+    post:
+      summary: Add Contract
+      description: Allows for the adding of an OpenAPI contract.
+      operationId: addContract
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/contract'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contract"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts
+  /contracts/{contract_id}:
+    get:
+      summary: Get Contract
+      description: Gets a single contract using it's unique contract id.
+      operationId: getContract
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+      responses:
+        '200':
+          description: Area Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contract"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts
+  /contracts/{contract_id}/info:
+    get:
+      summary: OpenAPIs Contract Info
+      description: Retrieves the info for an OpenAPI contract.
+      operationId: getContractInfo
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/info"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Info
+    put:
+      summary: Update OpenAPIs Contract Info
+      description: Update the info for an OpenAPI contract.
+      operationId: updateContractInfo
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/info'
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/info"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Info
+  /contracts/{contract_id}/info/contact:
+    get:
+      summary: OpenAPIs Contract Info Contact
+      description: Retrieves the info contact  for an OpenAPI contract.
+      operationId: getContractInfoContact
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Info
+    put:
+      summary: Update OpenAPIs Contract Info Contact
+      description: Update the info contact for an OpenAPI contract.
+      operationId: updateContractInfoContact
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/contact'
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Info
+  /contracts/{contract_id}/info/license:
+    get:
+      summary: OpenAPIs Contract Info License
+      description: Retrieves the info license  for an OpenAPI contract.
+      operationId: getContractInfoLicense
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/license"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Info
+    put:
+      summary: Update OpenAPIs Contract Info License
+      description: Update the info license for an OpenAPI contract.
+      operationId: updateContractInfoLicense
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/license'
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/license"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Info
+  /contracts/{contract_id}/servers:
+    get:
+      summary: OpenAPIs Contract Servers
+      description: Retrieves the servers for an OpenAPI contract.
+      operationId: getContractServers
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/server"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Servers
+    post:
+      summary: Add OpenAPIs Contract Server
+      description: Adds a server for an OpenAPI contract.
+      operationId: addContractServer
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/server'
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/server"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Servers
+  /contracts/{contract_id}/servers/{server_id}/variables:
+    get:
+      summary: OpenAPIs Contract Server Variables
+      description: Retrieves the server variables for an OpenAPI contract.
+      operationId: getContractServerVariables
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: server_id
+          description: The unique server id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/serverVariable"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Servers
+  /contracts/{contract_id}/servers/{server_id}/variables/{variable_id}:
+    get:
+      summary: OpenAPIs Contract Server Variable
+      description: Retrieves a server variable for an OpenAPI contract.
+      operationId: getContractServerVariable
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: server_id
+          description: The unique server id.
+        - in: path
+          required: true
+          type: string
+          name: variable_id
+          description: The unique variable id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/serverVariable"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Servers
+    put:
+      summary: Add OpenAPIs Contract Server Variable
+      description: Adds a server variable for an OpenAPI contract.
+      operationId: addContractServerVariable
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: server_id
+          description: The unique server id.
+        - in: path
+          required: true
+          type: string
+          name: variable_id
+          description: The unique variable id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/serverVariable'
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/serverVariable"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Servers
+    delete:
+      summary: Delete OpenAPIs Contract Server Variable
+      description: Deletes a server variable for an OpenAPI contract.
+      operationId: deleteContractServerVariable
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: server_id
+          description: The unique server id.
+        - in: path
+          required: true
+          type: string
+          name: variable_id
+          description: The unique variable id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/serverVariable"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Servers
+  /contracts/{contract_id}/servers/{server_id}/variables/{variable_id}/enums:
+    get:
+      summary: OpenAPIs Contract Server Variable Enums
+      description: Retrieves server variable enums for an OpenAPI contract.
+      operationId: getContractServerVariableEnums
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: server_id
+          description: The unique server id.
+        - in: path
+          required: true
+          type: string
+          name: variable_id
+          description: The unique variable id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/enum"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Servers
+    post:
+      summary: Add OpenAPIs Contract Server Variable Enum
+      description: Adds a server variable enum for an OpenAPI contract.
+      operationId: addContractServerVariableEnum
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: server_id
+          description: The unique server id.
+        - in: path
+          required: true
+          type: string
+          name: variable_id
+          description: The unique variable id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/enum'
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/serverVariable"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Servers
+  /contracts/{contract_id}/servers/{server_id}/variables/{variable_id}/enums/{enum}:
+    put:
+      summary: OpenAPIs Contract Server Variable Enums
+      description: Retrieves server variable enums for an OpenAPI contract.
+      operationId: updateContractServerVariableEnums
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: server_id
+          description: The unique server id.
+        - in: path
+          required: true
+          type: string
+          name: variable_id
+          description: The unique variable id.
+        - in: path
+          required: true
+          type: string
+          name: enum
+          description: The enum.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/enum"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Servers
+    delete:
+      summary: Remove OpenAPIs Contract Server Variable Enum
+      description: Removes a server variable enum for an OpenAPI contract.
+      operationId: deleteContractServerVariableEnum
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: server_id
+          description: The unique server id.
+        - in: path
+          required: true
+          type: string
+          name: variable_id
+          description: The unique variable id.
+        - in: path
+          required: true
+          type: string
+          name: enum
+          description: The enum.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/enum"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Servers
+  /contracts/{contract_id}/components:
+    get:
+      summary: OpenAPIs Contract Components
+      description: Retrieves the components for an OpenAPI contract.
+      operationId: getContractComponents
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/component"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/components/schemas:
+    get:
+      summary: OpenAPIs Contract Component Schemas
+      description: Retrieves the component schemas for an OpenAPI contract.
+      operationId: getContractComponentSchemas
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/schema"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    post:
+      summary: Add OpenAPIs Contract Component Schema
+      description: Adds a component schema for an OpenAPI contract.
+      operationId: addContractComponentSchema
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/schema'
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/schema"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/components/schemas/{schema_id}:
+    get:
+      summary: Get OpenAPIs Contract Component Schema
+      description: Retrieves an individual component schema for an OpenAPI contract.
+      operationId: getContractComponentSchema
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: schema_id
+          description: The unique schema id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/schema"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    put:
+      summary: Updates OpenAPIs Contract Component Schema
+      description: Updates the component schema for an OpenAPI contract.
+      operationId: updateContractComponentSchema
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: schema_id
+          description: The unique schema id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/schema'
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/schema"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    delete:
+      summary: Delete OpenAPIs Contract Component Schema
+      description: Deletes an individual component schema for an OpenAPI contract.
+      operationId: deleteContractComponentSchemas
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: schema_id
+          description: The unique schema id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/schema"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/components/responses:
+    get:
+      summary: OpenAPIs Contract Component Responses
+      description: Retrieves the component responses for an OpenAPI contract.
+      operationId: getContractComponentResponses
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/components/responses/{response_id}:
+    get:
+      summary: Get OpenAPIs Contract Component Response
+      description: Retrieves an individual component response for an OpenAPI contract.
+      operationId: getContractComponentResponse
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: response_id
+          description: The unique response id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    put:
+      summary: Updates OpenAPIs Contract Component Response
+      description: Updates the component response for an OpenAPI contract.
+      operationId: updateContractComponentResponse
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: response_id
+          description: The unique response id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/response'
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    delete:
+      summary: Delete OpenAPIs Contract Component Schema
+      description: Deletes an individual component response for an OpenAPI contract.
+      operationId: deleteContractComponentResponses
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: response_id
+          description: The unique response id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/components/parameters:
+    get:
+      summary: OpenAPIs Contract Component Parameters
+      description: Retrieves the component parameters for an OpenAPI contract.
+      operationId: getContractComponentParameters
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/parameter"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/components/parameters/{parameter_id}:
+    get:
+      summary: Get OpenAPIs Contract Component Schema
+      description: Retrieves an individual component parameter for an OpenAPI contract.
+      operationId: getContractComponentParameter
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: parameter_id
+          description: The unique parameter id.
+      responses:
+        '200':
+          description: Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/parameter"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    put:
+      summary: Updates OpenAPIs Contract Component Parameter
+      description: Updates the component parameter for an OpenAPI contract.
+      operationId: updateContractComponentParameter
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: parameter_id
+          description: The unique parameter id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/parameter'
+      responses:
+        '200':
+          description: Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/parameter"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    delete:
+      summary: Delete OpenAPIs Contract Component Schema
+      description: Deletes an individual component parameter for an OpenAPI contract.
+      operationId: deleteContractComponentParameters
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: parameter_id
+          description: The unique parameter id.
+      responses:
+        '200':
+          description: Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/parameter"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/components/examples:
+    get:
+      summary: OpenAPIs Contract Component Examples
+      description: Retrieves the component examples for an OpenAPI contract.
+      operationId: getContractComponentExamples
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/example"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/components/examples/{example_id}:
+    get:
+      summary: Get OpenAPIs Contract Component Schema
+      description: Retrieves an individual component example for an OpenAPI contract.
+      operationId: getContractComponentExample
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: example_id
+          description: The unique example id.
+      responses:
+        '200':
+          description: Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/example"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    put:
+      summary: Updates OpenAPIs Contract Component Example
+      description: Updates the component example for an OpenAPI contract.
+      operationId: updateContractComponentExample
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: example_id
+          description: The unique example id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/example'
+      responses:
+        '200':
+          description: Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/example"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    delete:
+      summary: Delete OpenAPIs Contract Component Schema
+      description: Deletes an individual component example for an OpenAPI contract.
+      operationId: deleteContractComponentExamples
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: example_id
+          description: The unique example id.
+      responses:
+        '200':
+          description: Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/example"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/components/request-bodies:
+    get:
+      summary: OpenAPIs Contract Component Request Bodies
+      description: Retrieves the component request bodies for an OpenAPI contract.
+      operationId: getContractComponentRequestBodies
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/requestBody"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/components/request-bodies/{requestBody_id}:
+    get:
+      summary: Get OpenAPIs Contract Component Request Bodies
+      description: Retrieves an individual component request body for an OpenAPI contract.
+      operationId: getContractComponentRequestBody
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: requestBody_id
+          description: The unique request body id.
+      responses:
+        '200':
+          description: Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/requestBody"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    put:
+      summary: Updates OpenAPIs Contract Component Request Bodies
+      description: Updates the component request body for an OpenAPI contract.
+      operationId: updateContractComponentRequestBody
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: requestBody_id
+          description: The unique request body id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/requestBody'
+      responses:
+        '200':
+          description: Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/requestBody"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    delete:
+      summary: Delete OpenAPIs Contract Component Request Bodies
+      description: Deletes an individual component request body for an OpenAPI contract.
+      operationId: deleteContractComponentRequestBody
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: requestBody_id
+          description: The unique request body id.
+      responses:
+        '200':
+          description: Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/requestBody"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/components/headers:
+    get:
+      summary: OpenAPIs Contract Component Headers
+      description: Retrieves the component headers for an OpenAPI contract.
+      operationId: getContractComponentHeaders
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/header"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/components/headers/{header_id}:
+    get:
+      summary: Get OpenAPIs Contract Component Headers
+      description: Retrieves an individual component header for an OpenAPI contract.
+      operationId: getContractComponentHeader
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: header_id
+          description: The unique header id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/header"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    put:
+      summary: Updates OpenAPIs Contract Component Headers
+      description: Updates the component header for an OpenAPI contract.
+      operationId: updateContractComponentHeader
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: header_id
+          description: The unique header id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/header'
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/header"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    delete:
+      summary: Delete OpenAPIs Contract Component Headers
+      description: Deletes an individual component header for an OpenAPI contract.
+      operationId: deleteContractComponentHeader
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: header_id
+          description: The unique header id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/header"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/components/security-schemes:
+    get:
+      summary: OpenAPIs Contract Component Security Schemes
+      description: Retrieves the component security schemes for an OpenAPI contract.
+      operationId: getContractComponentSecuritySchemes
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/securityScheme"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/components/security-schemes/{securityScheme_id}:
+    get:
+      summary: Get OpenAPIs Contract Component Security Schemes
+      description: Retrieves an individual component security scheme for an OpenAPI contract.
+      operationId: getContractComponentSecurity Scheme
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: securityScheme_id
+          description: The unique security scheme id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/securityScheme"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    put:
+      summary: Updates OpenAPIs Contract Component Security Schemes
+      description: Updates the component security scheme for an OpenAPI contract.
+      operationId: updateContractComponentSecurity Scheme
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: securityScheme_id
+          description: The unique security scheme id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/securityScheme'
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/securityScheme"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    delete:
+      summary: Delete OpenAPIs Contract Component Security Schemes
+      description: Deletes an individual component security scheme for an OpenAPI contract.
+      operationId: deleteContractComponentSecurity Scheme
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: securityScheme_id
+          description: The unique security scheme id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/securityScheme"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/components/links:
+    get:
+      summary: OpenAPIs Contract Component Links
+      description: Retrieves the component links for an OpenAPI contract.
+      operationId: getContractComponentLinks
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/link"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/components/links/{link_id}:
+    get:
+      summary: Get OpenAPIs Contract Component Links
+      description: Retrieves an individual component link for an OpenAPI contract.
+      operationId: getContractComponentLink
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: link_id
+          description: The unique link id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/link"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    put:
+      summary: Updates OpenAPIs Contract Component Links
+      description: Updates the component link for an OpenAPI contract.
+      operationId: updateContractComponentLink
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: link_id
+          description: The unique link id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/link'
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/link"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    delete:
+      summary: Delete OpenAPIs Contract Component Links
+      description: Deletes an individual component link for an OpenAPI contract.
+      operationId: deleteContractComponentLink
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: link_id
+          description: The unique link id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/link"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/components/callbacks:
+    get:
+      summary: OpenAPIs Contract Component Callbacks
+      description: Retrieves the component callbacks for an OpenAPI contract.
+      operationId: getContractComponentCallbacks
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/callback"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/components/callbacks/{callback_id}:
+    get:
+      summary: Get OpenAPIs Contract Component Callbacks
+      description: Retrieves an individual component callback for an OpenAPI contract.
+      operationId: getContractComponentCallback
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: callback_id
+          description: The unique callback id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/callback"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    put:
+      summary: Updates OpenAPIs Contract Component Callbacks
+      description: Updates the component callback for an OpenAPI contract.
+      operationId: updateContractComponentCallback
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: callback_id
+          description: The unique callback id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/callback'
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/callback"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+    delete:
+      summary: Delete OpenAPIs Contract Component Callbacks
+      description: Deletes an individual component callback for an OpenAPI contract.
+      operationId: deleteContractComponentCallback
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: callback_id
+          description: The unique callback id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/callback"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Components
+  /contracts/{contract_id}/paths:
+    get:
+      summary: OpenAPIs Contract Paths
+      description: Retrieves the paths for an OpenAPI contract.
+      operationId: getContractPaths
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/path"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    post:
+      summary: Add OpenAPIs Contract Paths
+      description: Add a paths for an OpenAPI contract.
+      operationId: addContractPath
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: query
+          required: true
+          type: string
+          name: path
+          description: The path.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/path"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+  /contracts/{contract_id}/paths/{path_id}:
+    get:
+      summary: Get OpenAPIs Contract Path
+      description: Retrieves an individual path for an OpenAPI contract.
+      operationId: getContractPath
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/path"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts
+    put:
+      summary: Updates OpenAPIs Contract Paths
+      description: Updates the path for an OpenAPI contract.
+      operationId: updateContractComponentPath
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/path'
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/path"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    delete:
+      summary: Delete OpenAPIs Contract Path
+      description: Deletes an individual path for an OpenAPI contract.
+      operationId: deleteContractComponentPath
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/path"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+  /contracts/{contract_id}/components/paths/{path_id}/path-items:
+    get:
+      summary: OpenAPIs Contract Path Items
+      description: Retrieves the path items for an OpenAPI contract.
+      operationId: getContractPathItems
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/pathItem"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    post:
+      summary: Add OpenAPIs Contract Path Item
+      description: Add a path item for an OpenAPI contract.
+      operationId: addContractPathItem
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/pathItem'
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/pathItem"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+  /contracts/{contract_id}/components/paths/{path_id}/path-items/{pathItem_id}:
+    get:
+      summary: Get OpenAPIs Contract Path Item
+      description: Retrieves an individual path item for an OpenAPI contract.
+      operationId: getContractPathItem
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/pathItem"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    put:
+      summary: Updates OpenAPIs Contract Path Item
+      description: Updates the path item for an OpenAPI contract.
+      operationId: updateContractComponentPathItem
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/pathItem'
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/pathItem"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    delete:
+      summary: Delete OpenAPIs Contract Path Item
+      description: Deletes an individual path item for an OpenAPI contract.
+      operationId: deleteContractComponentPathItem
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/pathItem"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+  /contracts/{contract_id}/components/paths/{path_id}/path-items/operations:
+    get:
+      summary: OpenAPIs Contract Path Item Operations
+      description: Retrieves the path item operations for an OpenAPI contract.
+      operationId: getContractPathItemOperations
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/operation"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    post:
+      summary: Add OpenAPIs Contract Path Item Operation
+      description: Add a path item operation for an OpenAPI contract.
+      operationId: addContractPathItemOperation
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/operation'
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/pathItem"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+  /contracts/{contract_id}/components/paths/{path_id}/path-items/{pathItem_id}/operations/{operation_id}:
+    get:
+      summary: Get OpenAPIs Contract Path Item Operation
+      description: Retrieves an individual path item operation for an OpenAPI contract.
+      operationId: getContractPathItemOperation
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/pathItem"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    put:
+      summary: Updates OpenAPIs Contract Path Item Operation
+      description: Updates the path item operation for an OpenAPI contract.
+      operationId: updateContractComponentPathItemOperation
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/operation'
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/operation"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    delete:
+      summary: Delete OpenAPIs Contract Path Item Operation
+      description: Deletes an individual path item operation for an OpenAPI contract.
+      operationId: deleteContractComponentPathItemOperation
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/operation"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+  /contracts/{contract_id}/components/paths/{path_id}/path-items/operations/parameters:
+    get:
+      summary: OpenAPIs Contract Path Item Operation Parameters
+      description: Retrieves the path item operation parameters for an OpenAPI contract.
+      operationId: getContractPathItemOperationParameters
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/parameter"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+  /contracts/{contract_id}/components/paths/{path_id}/path-items/{pathItem_id}/operations/{operation_id}/parameters/{parameter_id}:
+    get:
+      summary: Get OpenAPIs Contract Path Item Operation Parameter
+      description: Retrieves an individual path item operation parameter for an OpenAPI contract.
+      operationId: getContractPathItemOperationParameter
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: parameter_id
+          description: The unique parameter id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/parameter"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    post:
+      summary: Add OpenAPIs Contract Path Item Operation Parameter
+      description: Add a path item operation parameter for an OpenAPI contract.
+      operationId: addContractPathItemOperationParameter
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: parameter_id
+          description: The unique parameter id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/parameter"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    put:
+      summary: Updates OpenAPIs Contract Path Item Operation Parameter
+      description: Updates the path item operation parameter for an OpenAPI contract.
+      operationId: updateContractComponentPathItemOperationParameters
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: parameter_id
+          description: The unique parameter id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/parameter"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    delete:
+      summary: Delete OpenAPIs Contract Path Item Operation Parameter
+      description: Deletes an individual path item operation parameter for an OpenAPI contract.
+      operationId: deleteContractComponentPathItemOperationParameter
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: parameter_id
+          description: The unique parameter id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/parameter"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+  /contracts/{contract_id}/components/paths/{path_id}/path-items/operations/request-body:
+    get:
+      summary: OpenAPIs Contract Path Item Operation Request Body
+      description: Retrieves the path item operation request body for an OpenAPI contract.
+      operationId: getContractPathItemOperationRequestBodies
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/requestBody"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+  /contracts/{contract_id}/components/paths/{path_id}/path-items/{pathItem_id}/operations/{operation_id}/request-body/{requestBody_id}:
+    get:
+      summary: Get OpenAPIs Contract Path Item Operation Request Body
+      description: Retrieves an individual path item operation request body for an OpenAPI contract.
+      operationId: getContractPathItemOperationRequestBody
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: requestBody_id
+          description: The unique request body id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/requestBody"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    post:
+      summary: Add OpenAPIs Contract Path Item Operation Request Body
+      description: Add a path item operation request body for an OpenAPI contract.
+      operationId: addContractPathItemOperationRequestBody
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: requestBody_id
+          description: The unique request body id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/requestBody"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    put:
+      summary: Updates OpenAPIs Contract Path Item Operation Request Body
+      description: Updates the path item operation request body for an OpenAPI contract.
+      operationId: updateContractComponentPathItemOperationRequestBody
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: requestBody_id
+          description: The unique request body id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/requestBody"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    delete:
+      summary: Delete OpenAPIs Contract Path Item Operation
+      description: Deletes an individual path item operation request body for an OpenAPI contract.
+      operationId: deleteContractComponentPathItemOperationRequestBody
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+        - in: path
+          required: true
+          type: string
+          name: requestBody_id
+          description: The unique request body id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/requestBody"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+  /contracts/{contract_id}/components/paths/{path_id}/path-items/operations/responses:
+    get:
+      summary: OpenAPIs Contract Path Item Operation Responses
+      description: Retrieves the path item operation responses for an OpenAPI contract.
+      operationId: getContractPathItemOperationResponses
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+  /contracts/{contract_id}/components/paths/{path_id}/path-items/{pathItem_id}/operations/{operation_id}/responses/{response_id}:
+    get:
+      summary: Get OpenAPIs Contract Path Item Operation Response
+      description: Retrieves an individual path item operation response for an OpenAPI contract.
+      operationId: getContractPathItemOperationResponse
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: response_id
+          description: The unique response id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/response"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    post:
+      summary: Add OpenAPIs Contract Path Item Operation Response
+      description: Add a path item operation response for an OpenAPI contract.
+      operationId: addContractPathItemOperationResponse
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: response_id
+          description: The unique response id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    put:
+      summary: Updates OpenAPIs Contract Path Item Operation Response
+      description: Updates the path item operation response for an OpenAPI contract.
+      operationId: updateContractComponentPathItemOperationResponse
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: response_id
+          description: The unique response id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/response"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    delete:
+      summary: Delete OpenAPIs Contract Path Item Operation Response
+      description: Deletes an individual path item operation response for an OpenAPI contract.
+      operationId: deleteContractComponentPathItemResponse
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: response_id
+          description: The unique response id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/response"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+  /contracts/{contract_id}/components/paths/{path_id}/path-items/operations/callbacks:
+    get:
+      summary: OpenAPIs Contract Path Item Operation Callbacks
+      description: Retrieves the path item operation callbacks for an OpenAPI contract.
+      operationId: getContractPathItemOperationCallbacks
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+      responses:
+        '200':
+          description: Successful Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/callback"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+  /contracts/{contract_id}/components/paths/{path_id}/path-items/{pathItem_id}/operations/{operation_id}/callbacks/{callback_id}:
+    get:
+      summary: Get OpenAPIs Contract Path Item Operation Callback
+      description: Retrieves an individual path item operation callback for an OpenAPI contract.
+      operationId: getContractPathItemOperationCallback
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: callback_id
+          description: The unique callback id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/callback"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    post:
+      summary: Add OpenAPIs Contract Path Item Operation Callbacks
+      description: Add a path item operation callback for an OpenAPI contract.
+      operationId: addContractPathItemOperationCallback
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: callback_id
+          description: The unique callback id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/callback"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    put:
+      summary: Updates OpenAPIs Contract Path Item Operation Callback
+      description: Updates the path item operation callback for an OpenAPI contract.
+      operationId: updateContractComponentPathItemOperationCallback
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: callback_id
+          description: The unique callback id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/callback"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    delete:
+      summary: Delete OpenAPIs Contract Path Item Operation Callback
+      description: Deletes an individual path item operation callback for an OpenAPI contract.
+      operationId: deleteContractComponentPathItemCallback
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: callback_id
+          description: The unique callback id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/callback"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+  /contracts/{contract_id}/components/paths/{path_id}/path-items/operations/security:
+    get:
+      summary: OpenAPIs Contract Path Item Operation Security
+      description: Retrieves the path item operation security for an OpenAPI contract.
+      operationId: getContractPathItemOperationSecurities
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+      responses:
+        '200':
+          description: Successful Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/security"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+  /contracts/{contract_id}/components/paths/{path_id}/path-items/{pathItem_id}/operations/{operation_id}/security/{security_id}:
+    get:
+      summary: Get OpenAPIs Contract Path Item Operation Security
+      description: Retrieves an individual path item operation security for an OpenAPI contract.
+      operationId: getContractPathItemOperationSecurity
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: security_id
+          description: The unique security id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/security"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    post:
+      summary: Add OpenAPIs Contract Path Item Operation Security
+      description: Add a path item operation security for an OpenAPI contract.
+      operationId: addContractPathItemOperationSecurity
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: security_id
+          description: The unique security id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/security"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    put:
+      summary: Updates OpenAPIs Contract Path Item Operation Security
+      description: Updates the path item operation security for an OpenAPI contract.
+      operationId: updateContractComponentPathItemOperationSecurity
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: security_id
+          description: The unique security id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/security"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    delete:
+      summary: Delete OpenAPIs Contract Path Item Operation Security
+      description: Deletes an individual path item operation security for an OpenAPI contract.
+      operationId: deleteContractComponentPathItemSecurity
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: security_id
+          description: The unique security id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/security"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+  /contracts/{contract_id}/components/paths/{path_id}/path-items/operations/servers:
+    get:
+      summary: OpenAPIs Contract Path Item Operation Servers
+      description: Retrieves the path item operation servers for an OpenAPI contract.
+      operationId: getContractPathItemOperationServers
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+      responses:
+        '200':
+          description: Successful Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/server"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+  /contracts/{contract_id}/components/paths/{path_id}/path-items/{pathItem_id}/operations/{operation_id}/servers/{server_id}:
+    get:
+      summary: Get OpenAPIs Contract Path Item Operation Server
+      description: Retrieves an individual path item operation server for an OpenAPI contract.
+      operationId: getContractPathItemOperationServer
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: server_id
+          description: The unique server id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/server"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    post:
+      summary: Add OpenAPIs Contract Path Item Operation Servers
+      description: Add a path item operation server for an OpenAPI contract.
+      operationId: addContractPathItemOperationServer
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: server_id
+          description: The unique server id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/server"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    put:
+      summary: Updates OpenAPIs Contract Path Item Operation Server
+      description: Updates the path item operation server for an OpenAPI contract.
+      operationId: updateContractComponentPathItemOperationServer
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: server_id
+          description: The unique server id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/server"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+    delete:
+      summary: Delete OpenAPIs Contract Path Item Operation Server
+      description: Deletes an individual path item operation server for an OpenAPI contract.
+      operationId: deleteContractComponentPathItemServer
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+        - in: path
+          required: true
+          type: string
+          name: path_id
+          description: The unique path id.
+        - in: path
+          required: true
+          type: string
+          name: pathItem_id
+          description: The unique path item id.
+        - in: path
+          required: true
+          type: string
+          name: operation_id
+          description: The unique operation id.
+        - in: path
+          required: true
+          type: string
+          name: server_id
+          description: The unique server id.
+      responses:
+        '200':
+          description: Success Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/server"
+        '500':
+          description: Error Parameter
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Paths
+  /contracts/{contract_id}/security:
+    get:
+      summary: OpenAPIs Contract Security
+      description: Retrieves the security for an OpenAPI contract.
+      operationId: getContractSecurity
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/security"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Security
+  /contracts/{contract_id}/tags:
+    get:
+      summary: OpenAPIs Contract Tags
+      description: Retrieves the tags for an OpenAPI contract.
+      operationId: getContractTags
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contract_id
+          description: The unique contract id.
+      responses:
+        '200':
+          description: Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/tag"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error"
+      tags:
+      - Contracts Tags
+securityDefinitions:
+  appid:
+    type: apiKey
+    in: header
+    name: x-appid
+  appkey:
+    type: apiKey
+    in: header
+    name: x-appkey
+definitions:
+  contracts:
+    description: A listing of contracts
+    properties:
+      contract:
+        type: "array"
+        items:
+          $ref: "#/definitions/contract"
+    required:
+      - id
+      - name
+  contract:
+    description: An individual OpenAPI contract.
+    properties:
+      contract_id:
+        description: The uniqud for the OpenAPI contract.
+        type: integer
+      openapi:
+        description: This string MUST be the semantic version number of the OpenAPI Specification version that the OpenAPI document uses.
+        type: string
+      info:
+        type: "object"
+        items:
+          $ref: "#/definitions/info"
+      servers:
+        type: "array"
+        items:
+          $ref: "#/definitions/server"
+      paths:
+        type: "array"
+        items:
+          $ref: "#/definitions/path"
+      components:
+        type: "array"
+        items:
+          $ref: "#/definitions/component"
+      security:
+        type: "object"
+        items:
+          $ref: "#/definitions/security"
+      tags:
+        type: "array"
+        items:
+          $ref: "#/definitions/tag"
+    required:
+      - id
+      - openapi
+  info:
+    description: The info object.
+    properties:
+      info_id:
+        description: The uniqud for the info object.
+        type: integer
+  server:
+    description: Individual server object.
+    properties:
+      server_id:
+        type: integer
+        description: The unique server id.
+      url:
+        type: string
+        title: The URL of the server.
+      description:
+        type: string
+        title: The description for the server.
+  path:
+    description: The server object.
+    properties:
+      path:
+        description: The path.
+        type: "object"
+        items:
+          $ref: "#/definitions/pathItem"
+  pathItem:
+    description: Individual path item.
+    properties:
+      path:
+        description: The operation.
+        type: "object"
+        items:
+          $ref: "#/definitions/operation"
+  operation:
+    description: The contact object.
+    properties:
+      tags:
+        type: array
+        title: The tags for the operation.
+        items:
+          $ref: "#/definitions/tag"
+      summary:
+        type: string
+        title: The summary for the operation.
+        default: ''
+      operationId:
+        type: string
+        title: The unique operation id.
+      parameters:
+        type: array
+        title: The parameters for the operation.
+        items:
+          $ref: "#/definitions/parameter"
+      requestBody:
+        type: object
+        title: The request bodies for this operation.
+        items:
+          $ref: "#/definitions/requestBody"
+      responses:
+        type: object
+        title: The responses for this operation.
+        items:
+          $ref: "#/definitions/response"
+      security:
+        type: array
+        title: The security scheme.
+        items:
+          $ref: "#/definitions/securityScheme"
+  component:
+    description: The server object.
+    properties:
+      schemas:
+        description: The server object.
+        type: "array"
+        items:
+          $ref: "#/definitions/schema"
+      responses:
+        description: The server object.
+        type: "array"
+        items:
+          $ref: "#/definitions/response"
+      parameters:
+        description: The server object.
+        type: "array"
+        items:
+          $ref: "#/definitions/parameter"
+      examples:
+        description: The server object.
+        type: "array"
+        items:
+          $ref: "#/definitions/example"
+      requestBodies:
+        description: The server object.
+        type: "array"
+        items:
+          $ref: "#/definitions/requestBody"
+      headers:
+        description: The server object.
+        type: "array"
+        items:
+          $ref: "#/definitions/header"
+      securitySchemes:
+        description: The server object.
+        type: "array"
+        items:
+          $ref: "#/definitions/securityScheme"
+      links:
+        description: The server object.
+        type: "array"
+        items:
+          $ref: "#/definitions/link"
+      callbacks:
+        description: The server object.
+        type: "array"
+        items:
+          $ref: "#/definitions/callback"
+  security:
+    description: The server object.
+    properties:
+      security_id:
+        description: The uniqud for the info object.
+        type: integer
+      name:
+        description: The name of the security definition.
+        type: string
+  tag:
+    description: List of tags.
+    properties:
+      info_id:
+        description: The unique id for the tag.
+        type: integer
+      name:
+        description: The name of the tag.
+        type: string
+      description:
+        description: The description of the tag.
+        type: string
+  schema:
+    description: The schema object.
+    properties:
+      schema_id:
+        description: The unique id for the schema.
+        type: integer
+      title:
+        description: The title of the schema.
+        type: string
+      multipleOf:
+        description: The multipleOf of the schema.
+        type: integer
+      maximum:
+        description: The maximum of the schema.
+        type: integer
+      exclusiveMaximum:
+        description: The exclusiveMaximum of the schema.
+        type: integer
+      minimum:
+        description: The minimum of the schema.
+        type: integer
+      exclusiveMinimum:
+        description: The exclusiveMinimum of the schema.
+        type: integer
+      maxLength:
+        description: The maxLength of the schema.
+        type: integer
+      minLength:
+        description: The minLength of the schema.
+        type: integer
+      pattern:
+        description: The pattern of the schema.
+        type: string
+      maxItems:
+        description: The maxItems of the schema.
+        type: integer
+      minItems:
+        description: The minItems of the schema.
+        type: integer
+      uniqueItems:
+        description: The uniqueItems of the schema.
+        type: integer
+      maxProperties:
+        description: The maxProperties of the schema.
+        type: integer
+      minProperties:
+        description: The minProperties of the schema.
+        type: integer
+      type:
+        description: The type of the schema.
+        type: string
+      description:
+        description: The description of the schema.
+        type: string
+      format:
+        description: The format of the schema.
+        type: string
+      default:
+        description: The default of the schema.
+        type: string
+      allOf:
+        description: The description of the schema.
+        type: "object"
+        items:
+          $ref: "#/definitions/schema"
+      oneOf:
+        description: The description of the schema.
+        type: "object"
+        items:
+          $ref: "#/definitions/schema"
+      anyOf:
+        description: The description of the schema.
+        type: "object"
+        items:
+          $ref: "#/definitions/schema"
+      not:
+        description: The description of the schema.
+        type: "object"
+        items:
+          $ref: "#/definitions/schema"
+      items:
+        description: The description of the schema.
+        type: "object"
+        items:
+          $ref: "#/definitions/schema"
+      properties:
+        description: The description of the schema.
+        type: "object"
+        items:
+          $ref: "#/definitions/schema"
+      additionalProperties:
+        description: The description of the schema.
+        type: "object"
+        items:
+          $ref: "#/definitions/schema"
+    required:
+      - title
+      - type
+  response:
+    description: The response object.
+    properties:
+      description:
+        description: A short description of the response.
+        type: string
+      headers:
+        description: The headers for the response.
+        type: "object"
+        items:
+          $ref: "#/definitions/header"
+      content:
+        description: The content for the response.
+        type: "object"
+        items:
+          $ref: "#/definitions/mediaType"
+      links:
+        description: The links for the response.
+        type: "object"
+        items:
+          $ref: "#/definitions/link"
+  parameter:
+    description: The parameter object.
+    properties:
+      in:
+        description: The location of the parameter. Possible values are "query", "header", "path" or "cookie".
+        type: string
+      name:
+        description: The name of the parameter. Parameter names are case sensitive.
+        type: string
+      description:
+        description: A brief description of the parameter.
+        type: string
+      required:
+        description: Determines whether this parameter is mandatory.
+        type: integer
+      deprecated:
+        description: Specifies that a parameter is deprecated and SHOULD be transitioned out of usage.
+        type: integer
+      allowEmptyValue:
+        description: Sets the ability to pass empty-valued parameters.
+        type: integer
+      style:
+        description: Describes how the parameter value will be serialized depending on the type of the parameter value.
+        type: string
+      explode:
+        description: When this is true, parameter values of type array or object generate separate parameters for each value of the array or key-value pair of the map.
+        type: integer
+      allowReserved:
+        description: Determines whether the parameter value SHOULD allow reserved characters, as defined by RFC3986
+        type: integer
+      schema:
+        description: Example of the media type.
+        type: "object"
+        items:
+          $ref: "#/definitions/schema"
+      examples:
+        description: Examples of the media type.
+        type: "object"
+        items:
+          $ref: "#/definitions/example"
+  example:
+    description: The example object.
+    properties:
+      summary:
+        description: Short description for the example.
+        type: string
+      description:
+        description: Long description for the example.
+        type: string
+      value:
+        description: Any  Embedded literal example.
+        type: string
+      externalValue:
+        description: A URL that points to the literal example.
+        type: string
+  requestBody:
+    description: The requestBody object.
+    properties:
+      summary:
+        description: Short description for the example.
+        type: string
+      content:
+        description: The content of the request body.
+        type: "object"
+        items:
+          $ref: "#/definitions/mediaType"
+      required:
+        description: Determines if the request body is required in the request.
+        type: integer
+  header:
+    description: The header object.
+    properties:
+      name:
+        description: The name of the parameter. Parameter names are case sensitive.
+        type: string
+      in:
+        description: The location of the parameter. Possible values are only "header".
+        type: string
+      description:
+        description: A brief description of the parameter.
+        type: string
+      required:
+        description: Determines whether this parameter is mandatory.
+        type: integer
+      deprecated:
+        description: Specifies that a parameter is deprecated and SHOULD be transitioned out of usage.
+        type: integer
+      allowEmptyValue:
+        description: Sets the ability to pass empty-valued parameters.
+        type: integer
+      style:
+        description: Describes how the parameter value will be serialized depending on the type of the parameter value.
+        type: string
+      explode:
+        description: When this is true, parameter values of type array or object generate separate parameters for each value of the array or key-value pair of the map.
+        type: integer
+      allowReserved:
+        description: Determines whether the parameter value SHOULD allow reserved characters, as defined by RFC3986
+        type: integer
+      schema:
+        description: Example of the media type.
+        type: "object"
+        items:
+          $ref: "#/definitions/schema"
+      examples:
+        description: Examples of the media type.
+        type: "object"
+        items:
+          $ref: "#/definitions/example"
+  link:
+    description: The link object.
+    properties:
+      operationRef:
+        description: A relative or absolute reference to an OAS operation.
+        type: string
+      operationId:
+        description: The name of an existing, resolvable OAS operation, as defined with a unique operationId.
+        type: string
+      parameters:
+        description: A map representing parameters to pass to an operation as specified with operationId or identified via operationRef.
+        type: string
+      requestBody:
+        description: A literal value or {expression} to use as a request body when calling the target operation.
+        type: string
+      description  :
+        description: A description of the link.
+        type: string
+      server:
+        description: A server object to be used by the target operation.
+        type: "object"
+        items:
+          $ref: "#/definitions/server"
+  callback:
+    description: The callback object.
+    properties:
+      expression:
+        description: A Path Item Object used to define a callback request and expected responses.
+        type: "object"
+        items:
+          $ref: "#/definitions/pathItem"
+  contact:
+    description: Contact information for this contract.
+    properties:
+      name:
+        description: The identifying name of the contact person/organization.
+        type: string
+      url:
+        description: The URL pointing to the contact information. MUST be in the format of a URL.
+        type: string
+      email:
+        description: The email address of the contact person/organization. MUST be in the format of an email address.
+        type: string
+  license:
+    description: License information for this contract.
+    properties:
+      name:
+        description: The license name used for the API.
+        type: string
+      url:
+        description: A URL to the license used for the API. MUST be in the format of a URL.
+        type: string
+  serverVariable:
+    description: The contact object.
+    properties:
+      description:
+        description: An optional description for the server variable.
+        type: string
+      default:
+        description: The default value to use for substitution, and to send, if an alternate value is not supplied.
+        type: string
+      enum:
+        description: An enumeration of string values to be used if the substitution options are from a limited set.
+        type: string
+  requestBody:
+    description: The contact object.
+    properties:
+      description:
+        description: A brief description of the request body.
+        type: string
+      content:
+        description: The content of the request body.
+        type: "object"
+        items:
+          $ref: "#/definitions/mediaType"
+      required:
+        description: Determines if the request body is required in the request. Defaults to false.
+        type: integer
+  securityScheme:
+    description: The contact object.
+    properties:
+      type:
+        description: The type of the security scheme. Valid values are "apiKey", "http", "oauth2", "openIdConnect".
+        type: string
+      description:
+        description: A short description for security scheme.
+        type: string
+      name:
+        description: The name of the header, query or cookie parameter to be used.
+        type: string
+      in:
+        description: The location of the API key. Valid values are "query", "header" or "cookie".
+        type: string
+      scheme:
+        description: The name of the HTTP Authorization scheme to be used in the Authorization header as defined in RFC7235.
+        type: string
+      bearerFormat:
+        description: A hint to the client to identify how the bearer token is formatted. Bearer tokens are usually generated by an authorization server, so this information is primarily for documentation purposes.
+        type: string
+      flows:
+        description: An object containing configuration information for the flow types supported.
+        type: string
+      openIdConnectUrl:
+        description: OpenId Connect URL to discover OAuth2 configuration values. This MUST be in the form of a URL.
+        type: string
+  mediaType:
+    description: The media type object.
+    properties:
+      schema:
+        description: The schema defining the type used for the request body.
+        type: "object"
+        items:
+          $ref: "#/definitions/schema"
+      example:
+        description: Example of the media type.
+        type: "object"
+      examples:
+        description: Examples of the media type.
+        type: "object"
+        items:
+          $ref: "#/definitions/example"
+      encoding:
+        description: A map between a property name and its encoding information.
+        type: "object"
+        items:
+          $ref: "#/definitions/encoding"
+  encoding:
+    description:  single encoding definition applied to a single schema property.
+    properties:
+      contentType:
+        description: The Content-Type for encoding a specific property.
+        type: "string"
+      headers:
+        description: The schema defining the type used for the request body.
+        type: "object"
+        items:
+          $ref: "#/definitions/schema"
+      style:
+        description: Describes how a specific property value will be serialized depending on its type.
+        type: "string"
+      explode:
+        description: When this is true, property values of type array or object generate separate parameters for each value of the array, or key-value-pair of the map.
+        type: "integer"
+      allowReserved:
+        description: Determines whether the parameter value SHOULD allow reserved characters, as defined by RFC3986
+        type: "integer"
+  enum:
+    description: The enum object.
+    properties:
+      value:
+        description: The enum value.
+        type: string
+  error:
+    description: 'Describes an HTTP error returned'
+    properties:
+      code:
+        description: 'Repeat the HTTP status code'
+        type: integer
+      message:
+        description: 'A plain language message explaining the error'
+        type: integer

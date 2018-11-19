@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+      <meta name="theme-color" content="#01c1d5">
+
+      <link rel="stylesheet" href="http://template.api.gallery.streamdata.io/assets/style.css">
+      <link href="http://template.api.gallery.streamdata.io/assets/font.css" rel="stylesheet">
+      <link rel="apple-touch-icon" sizes="180x180" href="http://template.api.gallery.streamdata.io/assets/apple-touch-icon.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="http://template.api.gallery.streamdata.io/assets/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="http://template.api.gallery.streamdata.io/assets/favicon-16x16.png">
+      <link rel="manifest" href="http://template.api.gallery.streamdata.io/assets/manifest.json">
+      <link rel="mask-icon" href="http://template.api.gallery.streamdata.io/assets/safari-pinned-tab.svg" color="#ff4040">
+      <meta name="theme-color" content="#ffffff">
+
+      <title>Streamdata.io API Gallery</title>
+
+      <!-- This site is optimized with the Yoast SEO plugin v6.2 - https://yoa.st/1yg?utm_content=6.2 -->
+      <meta name="description" content="Have a look at some APIs and see how they&#39;ve benefitted from our realtime data streaming such as BitcoinAverage.com, New York CitiBike, GitHub Events, The Guardian, and more.">
+      <link rel="canonical" href="https://streamdata.io/developers/api-gallery/">
+
+      <meta property="og:locale" content="en_US">
+      <meta property="og:type" content="article">
+      <meta property="og:title" content="API Gallery to evaluate API polling versus event-driven streaming">
+      <meta property="og:description" content="Have a look at some APIs and see how they&#39;ve benefitted from our realtime data streaming such as BitcoinAverage.com, New York CitiBike, GitHub Events, The Guardian, and more.">
+      <meta property="og:url" content="https://streamdata.io/developers/api-gallery/">
+      <meta property="og:site_name" content="Streamdata.io">
+
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:description" content="Have a look at some APIs and see how they&#39;ve benefitted from our realtime data streaming such as BitcoinAverage.com, New York CitiBike, GitHub Events, The Guardian, and more.">
+      <meta name="twitter:title" content="API Gallery to evaluate API polling versus event-driven streaming">
+
+      <script type="text/javascript">
+         window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.4\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.4\/svg\/","svgExt":".svg","source":{"concatemoji":"http://template.api.gallery.streamdata.io/assets/wp-emoji-release.min.js?ver=4.9.4"}};
+         !function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56692,8205,9792,65039],[55357,56692,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+      </script><script src="http://template.api.gallery.streamdata.io/assets/wp-emoji-release.min.js" type="text/javascript" defer=""></script>
+
+      <style type="text/css">
+         img.wp-smiley,
+         img.emoji {
+         display: inline !important;
+         border: none !important;
+         box-shadow: none !important;
+         height: 1em !important;
+         width: 1em !important;
+         margin: 0 .07em !important;
+         vertical-align: -0.1em !important;
+         background: none !important;
+         padding: 0 !important;
+         }
+      </style>
+      <link rel="stylesheet" id="contact-form-7-css" href="http://template.api.gallery.streamdata.io/assets/styles.css" type="text/css" media="all">
+      <script type="text/javascript" src="http://template.api.gallery.streamdata.io/assets/jquery.js"></script>
+      <script type="text/javascript" src="http://template.api.gallery.streamdata.io/assets/jquery-migrate.min.js"></script>
+      <script type="text/javascript">
+         /* <![CDATA[ */
+         var cssTarget = "img.style-svg";
+         var ForceInlineSVGActive = "false";
+         /* ]]> */
+      </script>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  		<script src="/assets/jquery.awesomeCloud-0.2.min.js"></script>
+
+      <script type="text/javascript" src="http://template.api.gallery.streamdata.io/assets/svgs-inline-min.js"></script>
+      <link rel="https://api.w.org/" href="https://streamdata.io/wp-json/">
+      <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://streamdata.io/xmlrpc.php?rsd">
+      <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://streamdata.io/wp-includes/wlwmanifest.xml">
+      <meta name="generator" content="WordPress 4.9.4">
+      <link rel="shortlink" href="https://streamdata.io/?p=570">
+      <link rel="alternate" type="application/json+oembed" href="https://streamdata.io/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fstreamdata.io%2Fdevelopers%2Fapi-gallery%2F">
+      <link rel="alternate" type="text/xml+oembed" href="https://streamdata.io/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fstreamdata.io%2Fdevelopers%2Fapi-gallery%2F&amp;format=xml">
+
+      <style type="text/css">
+  			.wordcloud {
+  				border: 0px solid #FFF;
+  				height: 8in;
+  				margin: 5px auto;
+  				padding: 0;
+  				page-break-after: always;
+  				page-break-inside: avoid;
+  				width: 90%;
+  			}
+  		</style>
+
+   </head>
+
+  <body class="page  page--cover   page--top " style="background-image: url('http://template.api.gallery.streamdata.io/assets/demos-background.png')" data-feedly-extension-follow-feed="1.0.3">
+
+  
+      <header class="header header--fixed header--notBottom header--pinned header--top">
+         <div class="header__container">
+            <a href="https://streamdata.io/developers/api-gallery/#" class="header__hamburger">
+               <div class="header__hamburgerContainer">
+                  <span class="header__hamburgerBar header__hamburgerBar--top"></span>
+                  <span class="header__hamburgerBar header__hamburgerBar--middle"></span>
+                  <span class="header__hamburgerBar header__hamburgerBar--bottom"></span>
+               </div>
+            </a>
+            <a class="header__logo" href="https://streamdata.io/"><img src="http://template.api.gallery.streamdata.io/assets/streamdata-logo.svg" alt="Streamdata.io Logo"></a>
+            <nav class="header__primaryNav">
+               <ul class="header__primaryNavList">
+                  <li class="header__primaryNavListItem">
+                     <a class="header__primaryNavLink " href="https://streamdata.io/product/">
+                        Product
+                        <svg class="header__primaryNavLinkArrow">
+                           <use xlink:href="/assets/symbol-defs.svg#chevron-down"></use>
+                        </svg>
+                     </a>
+                     <div class="header__primaryNavSubListContainer">
+                        <ul class="header__primaryNavSubList">
+                           <li class="header__primaryNavSubListItem">
+                              <a class="header__primaryNavSubLink" href="https://streamdata.io/product/data-providers/">
+                              Data Providers
+                              </a>
+                           </li>
+                           <li class="header__primaryNavSubListItem">
+                              <a class="header__primaryNavSubLink" href="https://streamdata.io/product/devices-desktop/">
+                              Devices &amp; Desktop
+                              </a>
+                           </li>
+                           <li class="header__primaryNavSubListItem">
+                              <a class="header__primaryNavSubLink" href="https://streamdata.io/product/machine-learning/">
+                              Machine Learning
+                              </a>
+                           </li>
+                           <li class="header__primaryNavSubListItem">
+                              <a class="header__primaryNavSubLink" href="http://api.gallery.streamdata.io/">
+                              API Gallery
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
+                  </li>
+                  <li class="header__primaryNavListItem">
+                     <a class="header__primaryNavLink " href="https://streamdata.io/developers/">
+                        Developers
+                        <svg class="header__primaryNavLinkArrow">
+                           <use xlink:href="/assets/symbol-defs.svg#chevron-down"></use>
+                        </svg>
+                     </a>
+                     <div class="header__primaryNavSubListContainer">
+                        <ul class="header__primaryNavSubList">
+                           <li class="header__primaryNavSubListItem">
+                              <a class="header__primaryNavSubLink" href="https://streamdata.io/developers/docs/">
+                              Docs
+                              </a>
+                           </li>
+                           <li class="header__primaryNavSubListItem">
+                              <a class="header__primaryNavSubLink" href="https://streamdata.io/developers/demos/">
+                              Demos
+                              </a>
+                           </li>
+                           <li class="header__primaryNavSubListItem">
+                              <a class="header__primaryNavSubLink" href="https://streamdata.io/developers/getting-started/">
+                              Getting Started
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
+                  </li>
+                  <li class="header__primaryNavListItem">
+                     <a class="header__primaryNavLink " href="https://streamdata.io/pricing/">
+                     Pricing
+                     </a>
+                  </li>
+                  <li class="header__primaryNavListItem">
+                     <a class="header__primaryNavLink " href="https://streamdata.io/blog/">
+                     Blog
+                     </a>
+                  </li>
+               </ul>
+               <div class="header__mobile-cta">
+                  <div><a href="https://portal.streamdata.io/?_ga=2.9625269.1899764506.1516547906-820332238.1511881229#/login" class="header__mobile-cta__login">Login</a></div>
+                  <div><a href="https://portal.streamdata.io/?_ga=2.9625269.1899764506.1516547906-820332238.1511881229#/register" class="header__mobile-cta__signup">Sign up</a></div>
+               </div>
+               <a href="https://portal.streamdata.io/?_ga=2.9625269.1899764506.1516547906-820332238.1511881229#/login" class="header__login">
+                  <svg class="header__login-icon">
+                     <use xlink:href="/assets/symbol-defs.svg#avatar"></use>
+                  </svg>
+               </a>
+               <a href="https://portal.streamdata.io/?_ga=2.9625269.1899764506.1516547906-820332238.1511881229#/register" class="header__button button button--gradient">
+                  <div class="button__content">Get Started</div>
+               </a>
+            </nav>
+         </div>
+      </header>
+
+  <div class="shortMasthead  shortMasthead--extra-top-padding ">
+     <h1 class="shortMasthead__headline enterAnimation enterAnimation--active" data-enter-animation="">Streamdata.io API Gallery - Search</h1>
+
+</div>
+
+<section class="taggedLinkCards">
+
+  <script>
+
+    function searchEntities()
+      {
+      search_keywords = document.getElementById('search_keywords').value;
+
+      jQuery.ajax({
+         url: "http://traffic.beacon.streamdata.gallery/search/count/?search="+search_keywords,
+         method: "get",
+         success:function(traffic){
+            //console.log(traffic);
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+              //console.log("Status: " + textStatus);
+              //console.log("Error: " + errorThrown);
+          }
+      });
+
+      //console.log("searching for: " + search_keywords);
+      document.getElementById('searchlisting').innerHTML == '';
+
+      pull_url = [];
+      entity = [];
+
+      jQuery.ajax({
+         url: "https://raw.githubusercontent.com/streamdata-gallery-master/entities/master/_data/entities.yaml",
+         method: "get",
+         success:function(entities){
+
+              jQuery.each(jsyaml.load(entities), function(rowKey, rowEntry) {
+
+                  entity[rowKey] = [];
+                  entity[rowKey]['org_label'] = rowEntry['label'];
+                  entity[rowKey]['org_slug'] = rowEntry['slug'];
+                  entity[rowKey]['org_dns_slug'] = entity[rowKey]['org_slug'].replace("-",".");
+                  entity[rowKey]['org_url'] = rowEntry['url'];
+                  entity[rowKey]['org_image'] = rowEntry['image'];
+
+                  entity[rowKey]['org_url'] = 'https://raw.githubusercontent.com/streamdata-gallery-organizations/' + entity[rowKey]['org_slug'] + '/master/_listings/' + entity[rowKey]['org_slug'] + '/apis.md';
+                  //console.log(entity[rowKey]['org_url']);
+
+                  jQuery.ajax({
+                     url: entity[rowKey]['org_url'],
+                     method: "get",
+                     success:function(apisjson_index_response){
+
+                          entity[rowKey] = [];
+                          entity[rowKey]['apisjson_index_response'] = apisjson_index_response.replace("---","");
+                          entity[rowKey]['apisjson_index_response'] = entity[rowKey]['apisjson_index_response'].replace("---","");
+                          try
+                            {
+                              entity[rowKey]['apisjson_index_yaml'] = jsyaml.load(entity[rowKey]['apisjson_index_response']);
+
+                              entity[rowKey]['apis_name'] = entity[rowKey]['apisjson_index_yaml']['name'];
+                              entity[rowKey]['apis_description'] = entity[rowKey]['apisjson_index_yaml']['description'];
+                              entity[rowKey]['apis_slug'] = entity[rowKey]['apisjson_index_yaml']['x-api-slug'];
+
+                              // search
+                              entity[rowKey]['search_apis_name'] = entity[rowKey]['apis_name'].search(search_keywords);
+                              entity[rowKey]['search_apis_description'] = entity[rowKey]['apis_description'].search(search_keywords);
+                              entity[rowKey]['search_apis_name'] = entity[rowKey]['search_apis_name'] - 0;
+                              entity[rowKey]['search_apis_description'] = entity[rowKey]['search_apis_description'] - 0;
+
+                              jQuery.each(entity[rowKey]['apisjson_index_yaml']['apis'], function(rowKey2, rowEntry2) {
+
+                                entity[rowKey]['api_name'] = rowEntry2.name;
+                                entity[rowKey]['api_description'] = rowEntry2.description;
+                                entity[rowKey]['api_image'] = rowEntry2.image;
+                                entity[rowKey]['api_properties'] = rowEntry2.properties;
+
+                                // search
+                                entity[rowKey]['search_api_name'] = entity[rowKey]['api_name'].search(search_keywords);
+                                entity[rowKey]['search_api_description'] = entity[rowKey]['api_description'].search(search_keywords);
+                                entity[rowKey]['search_api_name'] = entity[rowKey]['search_api_name'] - 0;
+                                entity[rowKey]['search_api_description'] = entity[rowKey]['search_api_description'] - 0;
+
+                                if(entity[rowKey]['search_apis_name'] > 1 || entity[rowKey]['search_apis_description'] > 1 || entity[rowKey]['search_api_name'] > 1 || entity[rowKey]['search_api_description'] > 1)
+                                  {
+
+                                  // Just APIs for now.
+                                  jQuery.each(entity[rowKey]['api_properties'], function(property_name, property_value) {
+
+                                    if(property_value.type=='x-openapi-spec')
+                                      {
+                                      entity[rowKey]['api_url'] = property_value.url;
+                                      enttity[rowKey]['replace_this'] = "https://raw.githubusercontent.com/streamdata-gallery-organizations/"+entity[rowKey]['org_slug']+"/master/_listings/";
+                                      console.log("replace this: " + enttity[rowKey]['replace_this']);
+                                      enttity[rowKey]['replace_with'] = "http://"+entity[rowKey]['org_dns_slug']+".api.gallery.streamdata.io/listings/"+entity[rowKey]['org_slug']+"/";
+                                      console.log("replace with: " + enttity[rowKey]['replace_with']);
+                                      entity[rowKey]['api_url'] = entity[rowKey]['api_url'].replace(enttity[rowKey]['replace_this'],enttity[rowKey]['replace_with']);
+                                      entity[rowKey]['api_url'] = entity[rowKey]['api_url'].replace(".md","/");
+                                      entity[rowKey]['html'] = '<div class="taggedLinkCard taggedLinkCard--red" data-platform="html5">';
+                                      entity[rowKey]['html'] = entity[rowKey]['html'] + '<div class="taggedLinkCard__container enterAnimation enterAnimation--active" data-enter-animation="">';
+                                      entity[rowKey]['html'] = entity[rowKey]['html'] + '<div class="taggedLinkCard__upper" style="background-color:#FFF;">';
+                                      entity[rowKey]['html'] = entity[rowKey]['html'] + '<a href="'+entity[rowKey]['api_url']+'"><img src="' + entity[rowKey]['api_image'] + '" class="taggedLinkCard__image" alt=""></a>';
+                                      entity[rowKey]['html'] = entity[rowKey]['html'] + '</div>';
+                                      entity[rowKey]['html'] = entity[rowKey]['html'] + '<div class="taggedLinkCard__lower">';
+                                      entity[rowKey]['html'] = entity[rowKey]['html'] + '<div class="taggedLinkCard__copy">';
+                                      entity[rowKey]['html'] = entity[rowKey]['html'] + '<h3 class="taggedLinkCard__title"><a href="'+entity[rowKey]['api_url']+'">' + entity[rowKey]['api_name'] + '</a></h3>';
+                                      entity[rowKey]['html'] = entity[rowKey]['html'] + '<p class="taggedLinkCard__body">' + entity[rowKey]['api_description'].substr(0, 550); + '...</p>';
+                                      entity[rowKey]['html'] = entity[rowKey]['html'] + '</div>';
+                                      entity[rowKey]['html'] = entity[rowKey]['html'] + '</div>';
+                                      entity[rowKey]['html'] = entity[rowKey]['html'] + '</div>';
+                                      entity[rowKey]['html'] = entity[rowKey]['html'] + '</div>';
+
+                                      //document.getElementById("searchlisting").appendChild(searchdiv);
+                                      document.getElementById('searchlisting').innerHTML = document.getElementById('searchlisting').innerHTML + entity[rowKey]['html'];
+                                      }
+
+                                    });
+
+                                  }
+
+                              });
+
+                            }
+                          catch(err)
+                            {
+
+                            }
+
+                      },
+                      error: function(XMLHttpRequest, textStatus, errorThrown) {
+                          jQuery.ajax({
+                             url: "http://traffic.beacon.streamdata.gallery/error/log/?url="+entity[rowKey]['org_url'],
+                             method: "get",
+                             success:function(traffic){
+                                //console.log(traffic);
+                              },
+                              error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                  //console.log("Status: " + textStatus);
+                                  //console.log("Error: " + errorThrown);
+                              }
+                          });
+                      }
+                  });
+                  // End spidering of all entities
+                    //console.log("-------------------");
+
+                });
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+              //console.log("Status: " + textStatus);
+              //console.log("Error: " + errorThrown);
+          }
+      });
+
+      }
+  </script>
+
+  <center>
+    <form name="entity-search">
+      <input type="text" name="search_keywords" id="search_keywords" value="" width="150">
+      <input type="button" name="search_button" value="Search APIs by Keyword " onclick="searchEntities();">
+    </form>
+  </center>
+  <div class="taggedLinkCards__cards" id="searchlisting" width="100%"></div>
+</section>
+<div class="submitApi__overflowContainer" data-submit-api="">
+   <div class="submitApi submitApi--left-hand-image">
+
+     <div class="submitApi__container">
+   <div class="submitApi__imageContainer">
+      <img class="submitApi__image" src="http://template.api.gallery.streamdata.io/assets/iphone_submit.png" alt="">
+   </div>
+   <div class="submitApi__formContainer">
+      <h2 class="submitApi__headline">Submit Your API</h2>
+      <h3 class="submitApi__subheadline">Join the gallery to find out how much you can save with Streamdata.io.</h3>
+      <div class="submitApi__form">
+         <form action="https://go.pardot.com/l/272652/2018-02-07/2fv1m" method="POST" class="form" novalidate="" data-parsley-errors-messages-disabled="">
+            <div class="form__input-container">
+               <input type="text" name="first_name" value="" size="40" class="form__input form__input--half form__input--dark" aria-required="true" aria-invalid="false" placeholder="*First Name">
+               <input type="text" name="last_name" value="" size="40" class="form__input form__input--half form__input--dark" aria-required="true" aria-invalid="false" placeholder="*Last Name">
+               <input type="text" name="company" value="" size="40" class="form__input form__input--dark" aria-invalid="false" placeholder="Company">
+               <input type="email" name="email" value="" size="40" class="form__input form__input--dark" aria-required="true" aria-invalid="false" placeholder="*Email">
+            </div>
+            <div class="form__inline">
+               <input type="text" name="api_url" value="" size="40" class="form__input form__input--dark" aria-required="true" aria-invalid="false" placeholder="*API URL">
+               <input type="submit" value="Submit" class="form__button button button--blue-gradient button--noBorder">
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+
+
+   </div>
+</div>
+
+  <footer class="footer">
+   <div class="footer__container">
+      <div class="footer__newsletter">
+         <p class="footer__newsletterTitle">Sign up to our newsletter for news, updates, and Japanese emojis!</p>
+         <form class="footer__newsletterForm" validate="" action="https://go.pardot.com/l/272652/2018-02-07/2fv23" method="POST">
+            <div class="form__inline footer__newsletterInput">
+               <input class="form__input" required="" name="email" type="text" placeholder="Email...">
+               <button class="button button--thin button--gradient button--noBorder" type="submit">
+                  <div class="button__content">Subscribe</div>
+               </button>
+            </div>
+         </form>
+      </div>
+      <h4 class="footer__title">Simpler data streaming for greater everything.</h4>
+      <nav class="footer__primaryNav">
+         <ul class="footer__primaryNavList">
+            <li class="footer__primaryNavListItem">
+               <a class="footer__primaryNavLink " href="https://streamdata.io/product/">
+               Product
+               </a>
+               <ul class="footer__primaryNavSubList ">
+                  <li class="footer__primaryNavSubListItem">
+                     <a class="footer__primaryNavSubLink" href="https://streamdata.io/product/data-providers/">
+                     Data Providers
+                     </a>
+                  </li>
+                  <li class="footer__primaryNavSubListItem">
+                     <a class="footer__primaryNavSubLink" href="https://streamdata.io/product/devices-desktop/">
+                     Devices &amp; Desktop
+                     </a>
+                  </li>
+                  <li class="footer__primaryNavSubListItem">
+                     <a class="footer__primaryNavSubLink" href="https://streamdata.io/product/machine-learning/">
+                     Machine Learning
+                     </a>
+                  </li>
+               </ul>
+            </li>
+            <li class="footer__primaryNavListItem">
+               <a class="footer__primaryNavLink " href="https://streamdata.io/developers/">
+               Developers
+               </a>
+               <ul class="footer__primaryNavSubList footer__primaryNavSubList--twoColumn">
+                  <li class="footer__primaryNavSubListItem">
+                     <a class="footer__primaryNavSubLink" href="https://streamdata.io/developers/getting-started/">
+                     Getting Started
+                     </a>
+                  </li>
+                  <li class="footer__primaryNavSubListItem">
+                     <a class="footer__primaryNavSubLink" href="https://streamdata.io/developers/api-gallery/">
+                     API Gallery
+                     </a>
+                  </li>
+                  <li class="footer__primaryNavSubListItem">
+                     <a class="footer__primaryNavSubLink" href="https://streamdata.io/developers/demos/">
+                     Demos
+                     </a>
+                  </li>
+                  <li class="footer__primaryNavSubListItem">
+                     <a class="footer__primaryNavSubLink" href="https://streamdata.io/developers/docs/">
+                     Docs
+                     </a>
+                  </li>
+                  <li class="footer__primaryNavSubListItem">
+                     <a class="footer__primaryNavSubLink" href="https://streamdataio.github.io/streamdataio-js/">
+                     SDK Docs
+                     </a>
+                  </li>
+               </ul>
+            </li>
+            <li class="footer__primaryNavListItem">
+               <a class="footer__primaryNavLink " href="https://streamdata.io/about-us/">
+               Company
+               </a>
+               <ul class="footer__primaryNavSubList footer__primaryNavSubList--twoColumn">
+                  <li class="footer__primaryNavSubListItem">
+                     <a class="footer__primaryNavSubLink" href="https://streamdata.io/about-us/">
+                     About Us
+                     </a>
+                  </li>
+                  <li class="footer__primaryNavSubListItem">
+                     <a class="footer__primaryNavSubLink" href="https://streamdata.io/pricing/">
+                     Pricing
+                     </a>
+                  </li>
+                  <li class="footer__primaryNavSubListItem">
+                     <a class="footer__primaryNavSubLink" href="https://streamdata.io/blog/">
+                     Blog
+                     </a>
+                  </li>
+                  <li class="footer__primaryNavSubListItem">
+                     <a class="footer__primaryNavSubLink" href="https://streamdata.io/partners/">
+                     Partners
+                     </a>
+                  </li>
+                  <li class="footer__primaryNavSubListItem">
+                     <a class="footer__primaryNavSubLink" href="https://streamdata.io/terms-conditions/">
+                     Terms Of Service
+                     </a>
+                  </li>
+                  <li class="footer__primaryNavSubListItem">
+                     <a class="footer__primaryNavSubLink" href="https://streamdata.io/privacy-policy/">
+                     Privacy Policy
+                     </a>
+                  </li>
+                  <li class="footer__primaryNavSubListItem">
+                     <a class="footer__primaryNavSubLink" href="https://streamdata.io/contact/">
+                     Contact Us
+                     </a>
+                  </li>
+               </ul>
+            </li>
+         </ul>
+      </nav>
+      <div class="footer__bottom">
+         <script type="text/javascript" src="/assets/se-v2.js"></script>
+         <span class="siteStatus" data-site-status="">
+            <svg class="siteStatus__icon">
+               <circle cx="6" cy="6" r="5" stroke="#417505" stroke-width="2" fill="#7ED321"></circle>
+            </svg>
+            <a href="https://status.streamdata.io/"><span class="siteStatus__message status-none">All Systems Operational</span></a>
+         </span>
+         <span class="footer__social">
+         <a href="https://twitter.com/streamdataio" target="_blank"><img class="footer__socialItem" src="/assets/share-bar-twitter.svg" title="Twitter" alt=""></a>
+         <a href="https://github.com/streamdataio" target="_blank"><img class="footer__socialItem" src="/assets/share-bar-github.svg" title="GitHub" alt=""></a>
+         <a href="https://www.linkedin.com/company/streamdata-io" target="_blank"><img class="footer__socialItem" src="/assets/share-bar-linkedIn.svg" title="LinkedIn" alt=""></a>
+         </span>
+      </div>
+   </div>
+   <div class="footer__sub">
+      <div class="footer__subContainer">
+         <a class="footer__subLogo" href="https://streamdata.io/"><img src="/assets/streamdata-logo-white.svg" alt="streamdata.io logo"></a>
+         <p class="footer__subCopyright">
+            © 2018 Streamdata.io All rights reserved
+         </p>
+      </div>
+   </div>
+</footer>
+
+
+  <script type="text/javascript" src="http://template.api.gallery.streamdata.io/assets/scripts.js"></script>
+  <script type="text/javascript" src="http://template.api.gallery.streamdata.io/assets/wp-embed.min.js"></script>
+  <script type="text/javascript" src="http://template.api.gallery.streamdata.io/assets/se-v2.js"></script>
+  <script defer="" src="http://template.api.gallery.streamdata.io/assets/svgxuse.js"></script>
+  <script src="http://template.api.gallery.streamdata.io/assets/vendor.js"></script>
+  <script src="http://template.api.gallery.streamdata.io/assets/bundle.js"></script>
+
+  <script type="text/javascript">
+    piAId = '273652';
+    piCId = '14306';
+    piHostname = 'pi.pardot.com';
+
+    (function() {
+      function async_load(){
+        var s = document.createElement('script'); s.type = 'text/javascript';
+        s.src = ('https:' == document.location.protocol ? 'https://pi' : 'http://cdn') + '.pardot.com/pd.js';
+        var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c);
+      }
+      if(window.attachEvent) { window.attachEvent('onload', async_load); }
+      else { window.addEventListener('load', async_load, false); }
+    })();
+  </script>
+
+  <!-- BEGIN GADWP v5.3.2 Universal Analytics - https://deconf.com/google-analytics-dashboard-wordpress/ -->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-57963322-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <!-- END GADWP Universal Analytics -->
+
+  
+
+</body>
+</html>

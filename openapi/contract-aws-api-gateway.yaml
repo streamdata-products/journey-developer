@@ -1,0 +1,2486 @@
+---
+swagger: "2.0"
+info:
+  version: "v1.2"
+  title: "SDIO Journey"
+host: "dbchwyuwsg.execute-api.us-east-1.amazonaws.com"
+basePath: "/dev"
+schemes:
+- "https"
+paths:
+  /journals:
+    get:
+      summary: Get Journals
+      description: Returns all journals.
+      operationId: "getJournals"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfjournal"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Journals
+    post:
+      summary: Add Journal
+      description: Add journal.
+      operationId: "addJournal"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "journal"
+        required: true
+        schema:
+          $ref: "#/definitions/journal"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/MODEL9fd988"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-post.php"
+        responses:
+          default:
+            statusCode: "200"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        type: "http"
+      tags:
+        - Journals
+  /journals/import:
+    get:
+      summary: Import Journal
+      description: Import a journal file.
+      produces:
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "type"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "url"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+        500:
+          description: "500 response"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-import-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.url: "method.request.querystring.url"
+          integration.request.querystring.name: "method.request.querystring.name"
+          integration.request.querystring.type: "method.request.querystring.type"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Journals
+  /journals/{journal_id}:
+    get:
+      summary: Get Journal
+      description: Get an individual journal.
+      operationId: "getJournal"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfjournal"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Journals
+    put:
+      summary: Update Journal
+      description: Update an individual journal.
+      operationId: "updateJournal"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "journal"
+        required: true
+        schema:
+          $ref: "#/definitions/journal"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfjournal"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-put.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "PUT"
+        type: "http"
+      tags:
+        - Journals
+    delete:
+      summary: Delete Journal
+      description: Delete an individual journal.
+      operationId: "deleteJournal"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfjournal"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-delete.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "DELETE"
+        type: "http"
+      tags:
+        - Journals
+  /journals/{journal_id}/areas:
+    get:
+      summary: Get Journal Areas
+      description: Get areas for a journal.
+      operationId: "getJournalAreas"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfarea"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Journal Areas
+    post:
+      summary: Add Journal Area
+      description: Add areas for a journal.
+      operationId: "addJournalArea"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "area"
+        required: true
+        schema:
+          $ref: "#/definitions/area"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfarea"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-post.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        type: "http"
+      tags:
+        - Journal Areas
+  /journals/{journal_id}/areas/{area_id}:
+    get:
+      summary: Get Journal Area
+      description: Get an individual area for a journal.
+      operationId: "getJournalArea"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfarea"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Journal Areas
+    put:
+      summary: Update Journal Area
+      description: Update an individual area for a journal.
+      operationId: "updateJournalArea"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "area"
+        required: true
+        schema:
+          $ref: "#/definitions/area"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfarea"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-put.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "PUT"
+        type: "http"
+      tags:
+        - Journal Areas
+    delete:
+      summary: Delete Journal Area
+      description: Delete an individual area for a journal.
+      operationId: "deleteJournalArea"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfarea"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-delete.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "DELETE"
+        type: "http"
+      tags:
+        - Journal Areas
+  /journals/{journal_id}/areas/{area_id}/stops:
+    get:
+      summary: Get Journal Stops
+      description: Get stop for a journal.
+      operationId: "getJournalAreaStops"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfstop"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Journal Area Stops
+    post:
+      summary: Add Journal Stop
+      description: Add stop for a journal.
+      operationId: "addJournalAreaStop"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "stop"
+        required: true
+        schema:
+          $ref: "#/definitions/stop"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfstop"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-post.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        type: "http"
+      tags:
+        - Journal Area Stops
+  /journals/{journal_id}/areas/{area_id}/stops/{stop_id}:
+    get:
+      summary: Get Journal Stop
+      description: Get an individual stop for a journal.
+      operationId: "getJournalAreaStop"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfstop"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Journal Area Stops
+    put:
+      summary: Update Journal Stop
+      description: Update an individual stop for a journal.
+      operationId: "updateJournalAreaStop"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "stop"
+        required: true
+        schema:
+          $ref: "#/definitions/stop"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfstop"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-put.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "PUT"
+        type: "http"
+      tags:
+        - Journal Area Stops
+    delete:
+      summary: Delete Journal Stop
+      description: Delete an individual stop for a journal.
+      operationId: "deleteJournalAreaStop"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfstop"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-delete.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "DELETE"
+        type: "http"
+      tags:
+        - Journal Area Stops
+  /journals/{journal_id}/areas/{area_id}/stops/{stop_id}/entries:
+    get:
+      summary: Get Journal Entries
+      description: Retrieve all journal entries.
+      produces:
+      - "application/json"
+      parameters:
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfstop"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+       - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Journal Area Stop Entries
+    post:
+      summary: Add Journal Entry
+      description: Add a journal entry.
+      produces:
+      - "application/json"
+      parameters:
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfstop"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+       - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-post.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        type: "http"
+      tags:
+        - Journal Area Stop Entries
+  /journals/{journal_id}/areas/{area_id}/stops/{stop_id}/entries/{entry_id}:
+    get:
+      summary: Get Journal Entry
+      description: Get an indiviidual journal entry.
+      operationId: "getJournalAreaStopEntry"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entry_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfentry"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-entry_id-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.entry_id: "method.request.path.entry_id"
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Journal Area Stop Entries
+    put:
+      summary: Update Journal Entry
+      description: Update an indiviidual journal entry.
+      operationId: "updateJournalAreaStopEntry"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entry_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "entry"
+        required: true
+        schema:
+          $ref: "#/definitions/entry"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfentry"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-entry_id-put.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.entry_id: "method.request.path.entry_id"
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "PUT"
+        type: "http"
+      tags:
+        - Journal Area Stop Entries
+    delete:
+      summary: Delete Journal Entry
+      description: Delete an indiviidual journal entry.
+      operationId: "deleteJournalAreaStopEntry"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entry_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfentry"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-entry_id-delete.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.entry_id: "method.request.path.entry_id"
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "DELETE"
+        type: "http"
+      tags:
+        - Journal Area Stop Entries
+  /journals/{journal_id}/areas/{area_id}/stops/{stop_id}/entries/{entry_id}/links:
+    get:
+      summary: Get Journal Entry Links
+      description: Get links for a journal entry.
+      operationId: "getJournalAreaStopEntryLinks"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entry_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOflink"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-entry_id-links-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.entry_id: "method.request.path.entry_id"
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Journal Area Stop Entry Links
+    post:
+      summary: Update Journal Entry Link
+      description: Update link for a journal entry.
+      operationId: "addJournalAreaStopEntryLink"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entry_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "link"
+        required: true
+        schema:
+          $ref: "#/definitions/link"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOflink"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-entry_id-links-post.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.entry_id: "method.request.path.entry_id"
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        type: "http"
+      tags:
+        - Journal Area Stop Entry Links
+  /journals/{journal_id}/areas/{area_id}/stops/{stop_id}/entries/{entry_id}/links/{link_id}:
+    get:
+      summary: Get Journal Entry Link
+      description: Get an individual link for a journal entry.
+      operationId: "getJournalAreaStopEntryLink"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entry_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "link_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOflink"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-entry_id-links-link_id-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.link_id: "method.request.path.link_id"
+          integration.request.querystring.entry_id: "method.request.path.entry_id"
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Journal Area Stop Entry Links
+    put:
+      summary: Update Journal Entry Link
+      description: Update an individual link for a journal entry.
+      operationId: "updateJournalAreaStopEntryLink"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entry_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "link_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "link"
+        required: true
+        schema:
+          $ref: "#/definitions/link"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOflink"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-entry_id-links-link_id-put.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.link_id: "method.request.path.link_id"
+          integration.request.querystring.entry_id: "method.request.path.entry_id"
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "PUT"
+        type: "http"
+      tags:
+        - Journal Area Stop Entry Links
+    delete:
+      summary: Delete Journal Entry Link
+      description: Delete an individual link for a journal entry.
+      operationId: "deleteJournalAreaStopEntryLink"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entry_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "link_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOflink"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-entry_id-links-link_id-delete.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.link_id: "method.request.path.link_id"
+          integration.request.querystring.entry_id: "method.request.path.entry_id"
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "DELETE"
+        type: "http"
+      tags:
+        - Journal Area Stop Entry Links
+  /journals/{journal_id}/areas/{area_id}/stops/{stop_id}/entries/{entry_id}/services:
+    get:
+      summary: Get Journal Entry Services
+      description: Get all services for a journal entry.
+      operationId: "getJournalAreaStopEntryServices"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entry_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfservice"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-entry_id-services-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.entry_id: "method.request.path.entry_id"
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Journal Area Stop Entry Services
+    post:
+      summary: Add Journal Entry Service
+      description: Add service for a journal entry.
+      operationId: "addJournalAreaStopEntryService"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entry_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "service"
+        required: true
+        schema:
+          $ref: "#/definitions/service"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfservice"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-entry_id-services-post.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.entry_id: "method.request.path.entry_id"
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        type: "http"
+      tags:
+        - Journal Area Stop Entry Services
+  /journals/{journal_id}/areas/{area_id}/stops/{stop_id}/entries/{entry_id}/services/{service_id}:
+    get:
+      summary: Get Journal Entry Service
+      description: Get an individual service for a journal entry.
+      operationId: "getJournalAreaStopEntryService"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entry_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "service_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfservice"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-entry_id-services-service_id-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.entry_id: "method.request.path.entry_id"
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.service_id: "method.request.path.service_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Journal Area Stop Entry Services
+    put:
+      summary: Update Journal Entry Service
+      description: Update an individual service for a journal entry.
+      operationId: "updateJournalAreaStopEntryService"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entry_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "service_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "service"
+        required: true
+        schema:
+          $ref: "#/definitions/service"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfservice"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-entry_id-services-service_id-put.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.entry_id: "method.request.path.entry_id"
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.service_id: "method.request.path.service_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "PUT"
+        type: "http"
+      tags:
+        - Journal Area Stop Entry Services
+    delete:
+      summary: Delete Journal Entry Service
+      description: Delete an individual service for a journal entry.
+      operationId: "deleteJournalAreaStopEntryService"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entry_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "service_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfservice"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-entry_id-services-service_id-delete.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.entry_id: "method.request.path.entry_id"
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.service_id: "method.request.path.service_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "DELETE"
+        type: "http"
+      tags:
+        - Journal Area Stop Entry Services
+  /journals/{journal_id}/areas/{area_id}/stops/{stop_id}/entries/{entry_id}/tools:
+    get:
+      summary: Get Journal Entry Tools
+      description: Get all tools for a journal entry.
+      operationId: "getJournalAreaStopEntryTools"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entry_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOftool"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-entry_id-tools-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.entry_id: "method.request.path.entry_id"
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Journal Area Stop Entry Tools
+    post:
+      summary: Add Journal Entry Tool
+      description: Add tool for a journal entry.
+      operationId: "addJournalAreaStopEntryTool"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entry_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "tool"
+        required: true
+        schema:
+          $ref: "#/definitions/tool"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOftool"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-entry_id-tools-post.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.entry_id: "method.request.path.entry_id"
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        type: "http"
+      tags:
+        - Journal Area Stop Entry Tools
+  /journals/{journal_id}/areas/{area_id}/stops/{stop_id}/entries/{entry_id}/tools/{tool_id}:
+    get:
+      summary: Get Journal Entry Tool
+      description: Get an individual tool for a journal entry.
+      operationId: "getJournalAreaStopEntryTool"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entry_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tool_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOftool"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-entry_id-tools-tool_id-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.entry_id: "method.request.path.entry_id"
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.tool_id: "method.request.path.tool_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Journal Area Stop Entry Tools
+    put:
+      summary: Update Journal Entry Tool
+      description: Update an individual tool for a journal entry.
+      operationId: "updateJournalAreaStopEntryTool"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entry_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tool_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "tool"
+        required: true
+        schema:
+          $ref: "#/definitions/tool"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOftool"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-entry_id-tools-tool_id-put.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.entry_id: "method.request.path.entry_id"
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.tool_id: "method.request.path.tool_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "PUT"
+        type: "http"
+      tags:
+        - Journal Area Stop Entry Tools
+    delete:
+      summary: Delete Journal Entry Tool
+      description: Delete an individual tool for a journal entry.
+      operationId: "deleteJournalAreaStopEntryTool"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "entry_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tool_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "area_id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stop_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOftool"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-areas-area_id-stops-stop_id-entries-entry_id-tools-tool_id-delete.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.entry_id: "method.request.path.entry_id"
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+          integration.request.querystring.tool_id: "method.request.path.tool_id"
+          integration.request.querystring.stop_id: "method.request.path.stop_id"
+          integration.request.querystring.area_id: "method.request.path.area_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Journal Area Stop Entry Tools
+  /journals/{journal_id}/publish:
+    get:
+      summary: Publish Journal Entry
+      description: Publishes a machine readable version of complete journey.
+      produces:
+      - "application/json"
+      parameters:
+      - name: "journal_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+        500:
+          description: "500 response"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/journals-journal_id-publish-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.journal_id: "method.request.path.journal_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Journal Publish
+  /links:
+    get:
+      summary: Get Links
+      description: Returns all links.
+      operationId: "getLinks"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOflink"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/links-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Links
+    post:
+      summary: Add Link
+      description: Adds a new link.
+      operationId: "addLink"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "link"
+        required: true
+        schema:
+          $ref: "#/definitions/link"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOflink"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/links-post.php"
+        responses:
+          default:
+            statusCode: "200"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        type: "http"
+      tags:
+        - Links
+  /links/{link_id}:
+    get:
+      summary: Get Link
+      description: Returns an individual link.
+      operationId: "getLink"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "link_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOflink"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/links-link_id-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.link_id: "method.request.path.link_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Links
+    put:
+      summary: Update Link
+      description: Updates an individual link.
+      operationId: "updateLink"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "link_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "link"
+        required: true
+        schema:
+          $ref: "#/definitions/link"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOflink"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/links-link_id-put.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.link_id: "method.request.path.link_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "PUT"
+        type: "http"
+      tags:
+        - Links
+    delete:
+      summary: Delete Link
+      description: Deletes an individual link.
+      operationId: "deleteLink"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "link_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOflink"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/links-link_id-delete.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.link_id: "method.request.path.link_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "DELETE"
+        type: "http"
+      tags:
+        - Links
+  /services:
+    get:
+      summary: Get Services
+      description: Returns all services.
+      operationId: "getServices"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfservice"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/services-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Services
+    post:
+      summary: Add Service
+      description: Adds a new service.
+      operationId: "addService"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "service"
+        required: true
+        schema:
+          $ref: "#/definitions/service"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfservice"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/services-post.php"
+        responses:
+          default:
+            statusCode: "200"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        type: "http"
+      tags:
+        - Services
+  /services/{service_id}:
+    get:
+      summary: Get Service
+      description: Returns an individual service.
+      operationId: "getService"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "service_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfservice"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/services-service_id-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.service_id: "method.request.path.service_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Services
+    put:
+      summary: Update Service
+      description: Updates an individual service.
+      operationId: "updateService"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "service_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "service"
+        required: true
+        schema:
+          $ref: "#/definitions/service"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfservice"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/services-service_id-put.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.service_id: "method.request.path.service_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "PUT"
+        type: "http"
+      tags:
+        - Services
+    delete:
+      summary: Delete Service
+      description: Deletes an individual service.
+      operationId: "deleteService"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "service_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfservice"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/services-service_id-delete.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.service_id: "method.request.path.service_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "DELETE"
+        type: "http"
+      tags:
+        - Services
+  /tools:
+    get:
+      summary: Get Tools
+      description: Returns all tools.
+      operationId: "getTools"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOftool"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/tools-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Tools
+    post:
+      summary: Add Tool
+      description: Add new tool.
+      operationId: "addTool"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "tool"
+        required: true
+        schema:
+          $ref: "#/definitions/tool"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOftool"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/tools-post.php"
+        responses:
+          default:
+            statusCode: "200"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        type: "http"
+      tags:
+        - Tools
+  /tools/{tool_id}:
+    get:
+      summary: Get Tool
+      description: Returns an individual tool.
+      operationId: "getTool"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "tool_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOftool"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/tools-tool_id-get.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.tool_id: "method.request.path.tool_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"
+      tags:
+        - Tools
+    put:
+      summary: Update Tool
+      description: Updates an individual tool.
+      operationId: "updateTool"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "tool_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "tool"
+        required: true
+        schema:
+          $ref: "#/definitions/tool"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOftool"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/tools-tool_id-put.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.tool_id: "method.request.path.tool_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "PUT"
+        type: "http"
+      tags:
+        - Tools
+    delete:
+      summary: Delete Tool
+      description: Deletes an individual tool.
+      operationId: "deleteTool"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "tool_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOftool"
+        500:
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+        403:
+          description: "403 response"
+          schema:
+            $ref: "#/definitions/ArrayOferrorResponse"
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        uri: "/journey/tools-tool_id-delete.php"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.querystring.tool_id: "method.request.path.tool_id"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "DELETE"
+        type: "http"
+      tags:
+        - Tools
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "x-api-key"
+    in: "header"
+definitions:
+  ArrayOfarea:
+    type: "array"
+    items:
+      $ref: "#/definitions/area"
+  area:
+    properties:
+      id:
+        type: "string"
+        description: "The unique idefntifier."
+    description: "Full details about object"
+  ArrayOferrorResponse:
+    type: "array"
+    items:
+      $ref: "#/definitions/errorResponse"
+  ArrayOfentry:
+    type: "array"
+    items:
+      $ref: "#/definitions/entry"
+  ArrayOflink:
+    type: "array"
+    items:
+      $ref: "#/definitions/link"
+  link:
+    properties:
+      id:
+        type: "string"
+        description: "The unique idefntifier."
+    description: "Full details about object"
+  ArrayOftool:
+    type: "array"
+    items:
+      $ref: "#/definitions/tool"
+  errorResponse:
+    properties:
+      code:
+        type: "integer"
+        description: "Repeat the HTTP status code"
+      message:
+        type: "integer"
+        description: "A plain language message explaining the error"
+    description: "Describes an HTTP error returned"
+  tool:
+    properties:
+      id:
+        type: "string"
+        description: "The unique idefntifier."
+    description: "Full details about object"
+  MODEL9fd988:
+    type: "object"
+  entry:
+    properties:
+      id:
+        type: "string"
+        description: "The unique idefntifier."
+    description: "Full details about object"
+  journal:
+    required:
+    - "id"
+    - "name"
+    properties:
+      id:
+        type: "string"
+        description: "The unique idefntifier."
+      name:
+        type: "string"
+        description: "The name."
+    description: "Full details about object"
+  stop:
+    properties:
+      id:
+        type: "string"
+        description: "The unique idefntifier."
+    description: "Full details about object"
+  service:
+    properties:
+      id:
+        type: "string"
+        description: "The unique idefntifier."
+    description: "Full details about object"
+  ArrayOfstop:
+    type: "array"
+    items:
+      $ref: "#/definitions/stop"
+  ArrayOfservice:
+    type: "array"
+    items:
+      $ref: "#/definitions/service"
+  ArrayOfjournal:
+    type: "array"
+    items:
+      $ref: "#/definitions/journal"
